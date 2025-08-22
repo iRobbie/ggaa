@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>{{seo.page_title}}</title>
+    <meta name="description" content="{{seo.meta_description}}">
+    <meta name="keywords" content="{{#if seo.meta_keywords}}{{#each seo.meta_keywords}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}{{/if}}">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="{{seo.open_graph_title}}">
+    <meta property="og:description" content="{{seo.open_graph_description}}">
+    <meta property="og:image" content="{{seo.open_graph_image}}">
+    <meta property="og:url" content="{{seo.canonical_url}}">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{seo.open_graph_title}}">
+    <meta name="twitter:description" content="{{seo.open_graph_description}}">
+    <meta name="twitter:image" content="{{seo.open_graph_image}}">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{seo.canonical_url}}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Swiper.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    
+    <!-- Font Awesome Icons (Filled Style) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    
+    <!-- Structured Data -->
+    {{#if seo.structured_data}}
+    <script type="application/ld+json">
+        {{json seo.structured_data}}
+    </script>
+    {{/if}}
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container">
+                <!-- Logo -->
+                <a class="navbar-brand" href="/">
+                    <h1 class="brand-title">Furniture Showcase</h1>
+                </a>
+                
+                <!-- Mobile Toggle -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <!-- Navigation Menu -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/products">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/contact">Contact</a>
+                        </li>
+                    </ul>
+                    
+                    <!-- Search Bar -->
+                    <form class="d-flex ms-3" action="/search" method="GET">
+                        <input class="form-control me-2" type="search" name="q" placeholder="Search furniture..." aria-label="Search">
+                        <button class="btn btn-outline-primary" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {{{body}}}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-light py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="mb-3">Furniture Showcase</h5>
+                    <p class="text-muted">{{#if content.footer_description}}{{content.footer_description}}{{else}}Premium furniture showcase for discerning homeowners{{/if}}</p>
+                    <div class="social-links">
+                        <a href="#" class="text-light me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-pinterest"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-houzz"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 mb-4">
+                    <h6 class="mb-3">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="/" class="text-muted text-decoration-none">Home</a></li>
+                        <li><a href="/products" class="text-muted text-decoration-none">Products</a></li>
+                        <li><a href="/about" class="text-muted text-decoration-none">About</a></li>
+                        <li><a href="/contact" class="text-muted text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 mb-4">
+                    <h6 class="mb-3">Categories</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="/products?category=living-room" class="text-muted text-decoration-none">Living Room</a></li>
+                        <li><a href="/products?category=dining-room" class="text-muted text-decoration-none">Dining Room</a></li>
+                        <li><a href="/products?category=bedroom" class="text-muted text-decoration-none">Bedroom</a></li>
+                        <li><a href="/products?category=office" class="text-muted text-decoration-none">Office</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 mb-4">
+                    <h6 class="mb-3">Contact Info</h6>
+                    <p class="text-muted mb-2">
+                        <i class="fas fa-map-marker-alt me-2"></i>
+                        123 Design Street, Creative City
+                    </p>
+                    <p class="text-muted mb-2">
+                        <i class="fas fa-phone me-2"></i>
+                        +1 (555) 123-4567
+                    </p>
+                    <p class="text-muted mb-2">
+                        <i class="fas fa-envelope me-2"></i>
+                        info@furnitureshowcase.com
+                    </p>
+                </div>
+            </div>
+            
+            <hr class="my-4">
+            
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="text-muted mb-0">&copy; 2024 Furniture Showcase. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="/privacy" class="text-muted text-decoration-none me-3">Privacy Policy</a>
+                    <a href="/terms" class="text-muted text-decoration-none">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Swiper.js JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="/assets/js/main.js"></script>
+    
+    <!-- Page-specific scripts -->
+    {{#if pageScripts}}
+        {{#each pageScripts}}
+            <script src="{{this}}"></script>
+        {{/each}}
+    {{/if}}
+</body>
+</html>
