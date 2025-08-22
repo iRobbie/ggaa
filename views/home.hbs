@@ -1,0 +1,293 @@
+<!-- Hero Slider Section -->
+<section class="hero-slider-section">
+    <div class="swiper hero-swiper">
+        <div class="swiper-wrapper">
+            {{#each sliders}}
+            <div class="swiper-slide hero-slide" style="background-image: url('{{background_image_url}}');">
+                <div class="hero-content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="hero-text-content">
+                                    {{#if category_text}}
+                                    <span class="hero-category">{{category_text}}</span>
+                                    {{/if}}
+                                    <h1 class="hero-title">{{title}}</h1>
+                                    {{#if subtitle}}
+                                    <h2 class="hero-subtitle">{{subtitle}}</h2>
+                                    {{/if}}
+                                    {{#if description}}
+                                    <p class="hero-description">{{description}}</p>
+                                    {{/if}}
+                                    {{#if button_text}}
+                                    <a href="{{button_link}}" class="btn btn-primary btn-lg hero-btn">
+                                        {{button_text}}
+                                    </a>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        
+        <!-- Navigation -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        
+        <!-- Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+</section>
+
+<!-- Featured Product Banners Section -->
+<section class="featured-banners-section py-5">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <h2 class="section-title">{{#if content.featured_title}}{{content.featured_title}}{{else}}Featured Collections{{/if}}</h2>
+            <p class="section-subtitle">{{#if content.featured_subtitle}}{{content.featured_subtitle}}{{else}}Handpicked pieces for your home{{/if}}</p>
+        </div>
+        
+        <div class="row g-4">
+            {{#each featuredBanners}}
+            <div class="col-lg-4">
+                <div class="featured-banner featured-banner-{{position}}" data-aos="fade-up" data-aos-delay="{{multiply @index 0.2}}">
+                    <div class="banner-content">
+                        {{#if custom_image_url}}
+                        <div class="banner-image">
+                            <img src="{{custom_image_url}}" alt="{{custom_title}}" class="img-fluid">
+                        </div>
+                        {{else if products.primary_image_url}}
+                        <div class="banner-image">
+                            <img src="{{products.primary_image_url}}" alt="{{products.name}}" class="img-fluid">
+                        </div>
+                        {{/if}}
+                        
+                        <div class="banner-overlay">
+                            <div class="banner-text">
+                                <h3 class="banner-title">
+                                    {{#if custom_title}}{{custom_title}}{{else}}{{products.name}}{{/if}}
+                                </h3>
+                                <p class="banner-description">
+                                    {{#if custom_description}}{{custom_description}}{{else}}{{products.short_description}}{{/if}}
+                                </p>
+                                <a href="{{#if custom_link}}{{custom_link}}{{else}}{{products.showcase_link}}{{/if}}" class="btn btn-outline-light">
+                                    View Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</section>
+
+<!-- Promotional Banners Section -->
+<section class="promotional-banners-section py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            {{#each promotionalBanners}}
+            <div class="col-lg-6">
+                <div class="promotional-banner promotional-banner-{{position}}" data-aos="fade-up" data-aos-delay="{{multiply @index 0.3}}">
+                    <div class="banner-content">
+                        <div class="banner-image">
+                            <img src="{{image_url}}" alt="{{title}}" class="img-fluid">
+                        </div>
+                        <div class="banner-overlay">
+                            <div class="banner-text text-{{#if (eq position 'left')}}end{{else}}start{{/if}}">
+                                <h3 class="banner-title">{{title}}</h3>
+                                {{#if description}}
+                                <p class="banner-description">{{description}}</p>
+                                {{/if}}
+                                {{#if link_url}}
+                                <a href="{{link_url}}" class="btn btn-primary">
+                                    Learn More
+                                </a>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</section>
+
+<!-- Product Tabs Section -->
+<section class="product-tabs-section py-5">
+    <div class="container">
+        <!-- Tab Navigation -->
+        <ul class="nav nav-tabs product-tabs" id="productTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="new-arrivals-tab" data-bs-toggle="tab" data-bs-target="#new-arrivals" type="button" role="tab">
+                    {{#if content.new_arrivals_title}}{{content.new_arrivals_title}}{{else}}New Arrivals{{/if}}
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="best-sellers-tab" data-bs-toggle="tab" data-bs-target="#best-sellers" type="button" role="tab">
+                    {{#if content.best_sellers_title}}{{content.best_sellers_title}}{{else}}Best Sellers{{/if}}
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="sale-items-tab" data-bs-toggle="tab" data-bs-target="#sale-items" type="button" role="tab">
+                    {{#if content.sale_items_title}}{{content.sale_items_title}}{{else}}Sale Items{{/if}}
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="on-sales-tab" data-bs-toggle="tab" data-bs-target="#on-sales" type="button" role="tab">
+                    {{#if content.on_sales_title}}{{content.on_sales_title}}{{else}}On Sales{{/if}}
+                </button>
+            </li>
+        </ul>
+        
+        <!-- Tab Content -->
+        <div class="tab-content" id="productTabsContent">
+            <!-- New Arrivals Tab -->
+            <div class="tab-pane fade show active" id="new-arrivals" role="tabpanel">
+                <div class="row g-4">
+                    {{#each newArrivals}}
+                    <div class="col-lg-3 col-md-6">
+                        <div class="product-card" data-aos="fade-up" data-aos-delay="{{multiply @index 0.1}}">
+                            <div class="product-image">
+                                <img src="{{primary_image_url}}" alt="{{name}}" class="img-fluid primary-image">
+                                {{#if hover_image_url}}
+                                <img src="{{hover_image_url}}" alt="{{name}}" class="img-fluid hover-image">
+                                {{/if}}
+                                {{#if is_new}}
+                                <span class="badge badge-new">New</span>
+                                {{/if}}
+                            </div>
+                            <div class="product-info">
+                                <h4 class="product-title">{{name}}</h4>
+                                <p class="product-description">{{short_description}}</p>
+                                <a href="{{showcase_link}}" class="btn btn-outline-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            
+            <!-- Best Sellers Tab -->
+            <div class="tab-pane fade" id="best-sellers" role="tabpanel">
+                <div class="row g-4">
+                    {{#each bestSellers}}
+                    <div class="col-lg-3 col-md-6">
+                        <div class="product-card" data-aos="fade-up" data-aos-delay="{{multiply @index 0.1}}">
+                            <div class="product-image">
+                                <img src="{{primary_image_url}}" alt="{{name}}" class="img-fluid primary-image">
+                                {{#if hover_image_url}}
+                                <img src="{{hover_image_url}}" alt="{{name}}" class="img-fluid hover-image">
+                                {{/if}}
+                                <span class="badge badge-featured">Featured</span>
+                            </div>
+                            <div class="product-info">
+                                <h4 class="product-title">{{name}}</h4>
+                                <p class="product-description">{{short_description}}</p>
+                                <a href="{{showcase_link}}" class="btn btn-outline-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            
+            <!-- Sale Items Tab -->
+            <div class="tab-pane fade" id="sale-items" role="tabpanel">
+                <div class="row g-4">
+                    {{#each saleItems}}
+                    <div class="col-lg-3 col-md-6">
+                        <div class="product-card" data-aos="fade-up" data-aos-delay="{{multiply @index 0.1}}">
+                            <div class="product-image">
+                                <img src="{{primary_image_url}}" alt="{{name}}" class="img-fluid primary-image">
+                                {{#if hover_image_url}}
+                                <img src="{{hover_image_url}}" alt="{{name}}" class="img-fluid hover-image">
+                                {{/if}}
+                                <span class="badge badge-sale">Sale</span>
+                            </div>
+                            <div class="product-info">
+                                <h4 class="product-title">{{name}}</h4>
+                                <p class="product-description">{{short_description}}</p>
+                                <a href="{{showcase_link}}" class="btn btn-outline-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+            
+            <!-- On Sales Tab -->
+            <div class="tab-pane fade" id="on-sales" role="tabpanel">
+                <div class="row g-4">
+                    {{#each onSales}}
+                    <div class="col-lg-3 col-md-6">
+                        <div class="product-card" data-aos="fade-up" data-aos-delay="{{multiply @index 0.1}}">
+                            <div class="product-image">
+                                <img src="{{primary_image_url}}" alt="{{name}}" class="img-fluid primary-image">
+                                {{#if hover_image_url}}
+                                <img src="{{hover_image_url}}" alt="{{name}}" class="img-fluid hover-image">
+                                {{/if}}
+                                <span class="badge badge-sale">Sale</span>
+                            </div>
+                            <div class="product-info">
+                                <h4 class="product-title">{{name}}</h4>
+                                <p class="product-description">{{short_description}}</p>
+                                <a href="{{showcase_link}}" class="btn btn-outline-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="cta-section py-5 bg-primary text-white">
+    <div class="container text-center">
+        <h2 class="cta-title">Ready to Transform Your Space?</h2>
+        <p class="cta-description">Explore our complete collection of premium furniture pieces</p>
+        <a href="/products" class="btn btn-light btn-lg">Browse All Products</a>
+    </div>
+</section>
+
+<!-- Initialize Swiper -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Hero Slider
+    const heroSwiper = new Swiper('.hero-swiper', {
+        loop: true,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        effect: 'fade',
+        fadeEffect: {
+            crossFade: true
+        }
+    });
+    
+    // Initialize AOS animations
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+    }
+});
+</script>
